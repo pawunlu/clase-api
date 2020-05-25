@@ -10,7 +10,7 @@ Partiendo de que, cualquier API debe cumplir con al menos los siguientes requisi
 una API REST resuelve esteb problema a través de una serie de principios de diseño:
 
 * existe una series de **recursos** que pueden ser accedidos por el **cliente**;
-* un recurso tiene un **identificador** que identifica unívocamente a un recurso;
+* un recurso tiene un **identificador** que le identifica unívocamente;
 * los clientes interactúan con el serivicio mediante el intercambio de **representaciones** del recurso;
 * se utiliza una **interfaz uniforme** que desacopla las implementaciones consumidoras de las que implementan el servicio;
 * se utiliza un modelo **sin estado** de peticiones independientes y atómicas;
@@ -78,7 +78,7 @@ Queda claro que al implementar REST sobre HTTP nuestras operaciones estarán dad
 | `DELETE` | Eliminar un recurso                                                                          | No          |
 | `PATCH`  | Actualizar un recurso especificando solo una parte de su estado mediante un documento patch. | No          |
 
-> Un documento patch es básicamente un documento que especifican qué debe actualizaciones y dónde en un documento destino sobre el cal será aplicado
+> Un documento patch es básicamente un documento que especifican qué debe actualizaciones y dónde en un documento destino sobre el cual será aplicado
 
 Cabe aclarar que no necesariamente necesitamos soportar todos los métodos. Por ejemplo, si no queremos dar la posibilidad de eliminar películas, no permitiremos peticiones `DELETE` sobre `https://mi-app.com/peliculas/{id}`.
 
