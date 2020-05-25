@@ -7,6 +7,8 @@ Este tutorial pretende ser una referencia y ejemplo de como crear una sencilla A
 1. [Introducción a REST](01-theory.md)
 2. [Instalación inicial](02-setup.md)
 3. [Configuración y manejo de datos](03-db.md)
+4. [Creación de Repositorio](04-git.md)
+5. [Primer Ruta](05-first-endpoint)
 
 ### old
 
