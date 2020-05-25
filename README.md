@@ -1,5 +1,15 @@
 # API REST con Slim micro-framework
 
+Este tutorial pretende ser una referencia y ejemplo de como crear una sencilla API rest. Se integran tecnologias y herramientas que se consideran modernas en el desarrollo (frameworks, migrations) que no estan directamente relacionadas con API pero que ayudan a la generación y ciclo de vida de los proyectos.
+
+## Indice
+
+1. [Introducción a REST](01-theory.md)
+2. [Instalación inicial](02-setup.md)
+3. [Configuración y manejo de datos](03-db.md)
+
+### old
+
 Algunas notas sobre crear APIs
 
 ![Ejemplo de API routes](images/api.png)
