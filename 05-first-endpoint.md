@@ -1,21 +1,23 @@
 # Primer recurso
 
-Creamos el archivo `app/controllers/MovieController.php` donde pondremos el controlador del primer recurso. En este caso modelaremos `Movie` (tanto controlador como modelo).
+Vamos a crear nuestro primer recurso accesible mediante REST. Para ello, creamos el archivo `app/controllers/MovieController.php` donde pondremos el controlador del primer recurso. En este caso modelaremos `Movie` (tanto controlador como modelo).
 
 ```php
 <?php
+namespace App\Controller;
 
-namespace Api\Controller;
+use Psr\Container\ContainerInterface;
+use App\Model\Movie;
 
-use Api\Model\Movie;
-
-class MovieController {
-    function __construct(Movie $model, \Slim\Container $container) {
-        $this->model = $model;
+class MoviesController {
+    public function __construct(ContainerInterface $container, Movie $model)
+    {
         $this->container = $container;
+        $this->movie = $model;
     }
 
-    function test($request, $response, $args) {
+    public function test($request, $response, $args) 
+    {
         $movies = [
             '1' => [
                 'name' => 'Pulp Fiction',
@@ -26,7 +28,8 @@ class MovieController {
                 'director' => 'Alfred Hitchcock'
             ]
         ];
-        return $response->withJson($movies);
+        $response->getBody()->write(\json_encode($movies));
+        return $response->withHeader('Content-Type', 'application/json');
     }
 }
 ```
@@ -38,12 +41,9 @@ Ademas creamos `app/models/Movie.php`
 
 namespace App\Model;
 
-/**
- *
- */
 class Movie
 {
-    function __construct(\PDO $db)
+    public function __construct(\PDO $db)
     {
         $this->db = $db;
     }
@@ -54,10 +54,10 @@ class Movie
 Y agregamos el controlador al inyector de dependencias en `src/dependencies.php`:
 
 ```php
-$container['MovieController'] = function ($c) {
-    $model = new \Api\Model\Movie($c['db']);
-    return new \Api\Controller\MovieController($model, $c);
-};
+    'MoviesController' => function(ContainerInterface $c){
+        $model = new \App\Model\Movie($c->get('db'));
+        return new \App\Controller\MoviesController($c, $model);
+    }
 ```
 
 Y agregamos la carga de las clases al autoload en composer.json. Autoload es una característica de los proyectos donde todos los archivos son cargados de forma automática al inicio y evita la necesidad de tener dispersos las llamadas a los archivos (nos ahorra el tener que hacer `include` o `require`). Se puede hacer de forma manual, o mejor, dejar que composer maneje esta propiedad mediante el siguiente código en el archivo `composer.json`.
@@ -65,9 +65,10 @@ Y agregamos la carga de las clases al autoload en composer.json. Autoload es una
 ```json
 "autoload": {
     "psr-4": {
+        "App\\": "src/",  
         "App\\Controller\\": "app/controllers",
         "App\\Model\\": "app/models"
-    }
+    },   
 },
 ```
 
