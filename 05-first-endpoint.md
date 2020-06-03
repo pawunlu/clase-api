@@ -95,4 +95,4 @@ Si nos dirigimos a la ruta, vemos que Slim nos muestra la salida del metodo test
 
 
 
-[< Anterior](04-git.md) | [Siguiente >](06-XXX.md)
+[< Anterior](04-git.md) | [Siguiente >](06-db-connect.md)

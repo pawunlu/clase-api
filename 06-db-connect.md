@@ -105,3 +105,4 @@ Creadas los métodos en el controlador y en el modelo, debemos agregar las rutas
 
 > Observemos que `{id}` indica que la ruta toma un argumento al cual llamamos `id` y accedemos al mismo en el método `MoviesController::read()` mediante el parámetro `$args`
 
+[< Anterior](05-first-endpoint.md) | [Siguiente >](07-more-endpoints.md)
