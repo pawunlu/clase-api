@@ -13,7 +13,7 @@ class MoviesController {
     public function __construct(ContainerInterface $container, Movie $model)
     {
         $this->container = $container;
-        $this->movie = $model;
+        $this->model = $model;
     }
 
     public function test($request, $response, $args) 
