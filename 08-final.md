@@ -12,4 +12,4 @@ Dado que cuando interactuamos con una API requerimos utilizar métodos HTTP no "
 
 Una API debe estar bien documentada. Para ello, podemos utilizar herramientas como [`Swagger`](https://swagger.io/). Esta es una herrmienta que permite documentar una API utilizando el formato OpenAPI. 
 
-[< Anterior](06-more-endpoints.md) 
+[< Anterior](07-more-endpoints.md) | [Home](README.md)
