@@ -1,6 +1,6 @@
-# Setup de Slim
+# Instalación del Entorno
 
-Lo primero que necesitamos es instalar la extensión de `php-xml`.
+Instalación de Librerías y Dependencias. Es aconsejable tener la ultima versión disponible de PHP instalada.
 
 ```bash
 sudo apt-get install php-xml
