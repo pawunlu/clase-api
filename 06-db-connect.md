@@ -2,14 +2,14 @@
 
 Vamos a modificar nuestra aplicación ahora para poder recuperar datos de la base de datos. Lo que haremos será lo siguiente:
 
-* Generar un seeder para la tabla Movies y ejecutarlo
+* Generar un *seeder* para la tabla `movies` y ejecutarlo
 * Generar a nivel del modelo métodos de consulta (individual y todos)
-* Hacer que el controller hable con el modelo
+* Hacer que el *controller* hable con el modelo
 * Generar la ruta adecuada
 
 ## Seeder de Movies
 
-Un seeder básicamente es una clase que nos permite incorporar a la base de datos infomración, normalmente de prueba. Vamos a generar uno para la tabla `movies`:
+Un *seeder* básicamente es una clase que nos permite incorporar a la base de datos información, normalmente de prueba. Vamos a generar uno para la tabla `movies`:
 
 ```bash
 vendor/bin/phinx seed:create MovieSeeder
@@ -39,7 +39,7 @@ class MovieSeeder extends AbstractSeed
 }
 ```
 
-Ahora, ejecutamos el seeder:
+Ahora, ejecutamos el *seeder*:
 
 ```bash
 vendor/bin/phinx seed:run -s MovieSeeder -e development
@@ -104,5 +104,7 @@ Creadas los métodos en el controlador y en el modelo, debemos agregar las rutas
 ```
 
 > Observemos que `{id}` indica que la ruta toma un argumento al cual llamamos `id` y accedemos al mismo en el método `MoviesController::read()` mediante el parámetro `$args`
+
+
 
 [< Anterior](05-first-endpoint.md) | [Siguiente >](07-more-endpoints.md)

@@ -1,6 +1,6 @@
 # Primer recurso
 
-Vamos a crear nuestro primer recurso accesible mediante REST. Para ello, creamos el archivo `app/controllers/MovieController.php` donde pondremos el controlador del primer recurso. En este caso modelaremos `Movie` (tanto controlador como modelo).
+Ahora si! Vamos a crear nuestro primer recurso accesible mediante REST. Para ello, creamos el archivo `app/controllers/MovieController.php` donde pondremos el controlador del primer recurso. En este caso modelaremos `Movie` (tanto controlador como modelo).
 
 ```php
 <?php
@@ -34,7 +34,7 @@ class MoviesController {
 }
 ```
 
-Ademas creamos `app/models/Movie.php`
+Ademas creamos `app/models/Movie.php`:
 
 ```php
 <?php
@@ -60,7 +60,7 @@ Y agregamos el controlador al inyector de dependencias en `src/dependencies.php`
     }
 ```
 
-Y agregamos la carga de las clases al autoload en composer.json. Autoload es una característica de los proyectos donde todos los archivos son cargados de forma automática al inicio y evita la necesidad de tener dispersos las llamadas a los archivos (nos ahorra el tener que hacer `include` o `require`). Se puede hacer de forma manual, o mejor, dejar que composer maneje esta propiedad mediante el siguiente código en el archivo `composer.json`.
+Y agregamos la carga de las clases al *autoload* en `composer.json`. Autoload es una característica de los proyectos donde todos los archivos son cargados de forma automática al inicio de la ejecución y evita la necesidad de tener dispersas estas inclusiones a lo largo de todo el código fuente (nos ahorra el tener que hacer `include` o `require` en cada archivo que vamos a usar). Se puede hacer de forma manual, o mejor aun, dejar que *composer* maneje esta propiedad mediante el siguiente código en el archivo `composer.json`.
 
 ```json
 "autoload": {
@@ -74,7 +74,7 @@ Y agregamos la carga de las clases al autoload en composer.json. Autoload es una
 
 Luego ejecutamos `composer dump-autoload `. Si quieres saber mas sobre **autoload**, dejamos algunas referencias[^1][^2].
 
-Ademas hay que crear la ruta (path) para acceder al recurso. Esto se hace en en `src/routes.php`:
+Ademas hay que crear la ruta (*path*) para acceder al recurso. Esto se hace en en `src/routes.php`:
 
 ```php
 $app->get('/movies/test', 'MovieController:test');
@@ -86,7 +86,7 @@ A continuación corremos el server:
 php -S localhost:8000 -t public
 ```
 
-Si nos dirigimos a la ruta, vemos que Slim nos muestra la salida del metodo test en http://localhost:8000/movies/test
+Si nos dirigimos a la ruta, vemos que Slim nos muestra la salida del método test en http://localhost:8000/movies/test
 
 ## Referencias
 

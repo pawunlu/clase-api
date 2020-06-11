@@ -7,11 +7,11 @@ Partiendo de que, cualquier API debe cumplir con al menos los siguientes requisi
 * ser independiente de un plataforma
 * debe ser capaz de evolucionar en el tiempo, sin por ello, perder compatibilidad con sus consumidores.
 
-una API REST resuelve esteb problema a través de una serie de principios de diseño:
+una API REST resuelve este problema a través de una serie de principios de diseño:
 
 * existe una series de **recursos** que pueden ser accedidos por el **cliente**;
 * un recurso tiene un **identificador** que le identifica unívocamente;
-* los clientes interactúan con el serivicio mediante el intercambio de **representaciones** del recurso;
+* los clientes interactúan con el servicio mediante el intercambio de **representaciones** del recurso;
 * se utiliza una **interfaz uniforme** que desacopla las implementaciones consumidoras de las que implementan el servicio;
 * se utiliza un modelo **sin estado** de peticiones independientes y atómicas;
 * deben estar basadas en **hipermedia**
@@ -23,7 +23,7 @@ Si observamos los requisitos, podemos inferir que sobre HTTP podemos implementar
 * nuestros recursos pueden ser documentos JSON, XML, imágenes, etc.
 * la interfaz uniforme va a estar dada por los métodos HTTP, los diferentes códigos de respuesta, encabezados, etc.
 * HTTP es un protocolo sin estado;
-* nuestros recursos pueden contener links a otros recursos asociados.
+* nuestros recursos pueden contener enlaces a otros recursos asociados.
 
 Supongamos que tenemos un sistema que gestiona una base de películas y queremos que el mismo pueda ser consumido por terceros. Algunos recursos posibles del mismo serían:
 
@@ -45,7 +45,7 @@ Así una película podría estar identificada mediante la siguiente URL: `https:
 }
 ```
 
-En consecuencia, si quisiéramos recuperar dicha película desde otra aplicación, la misma deberá implementar un cliente HTTP, que realice una petición `GET` sobre `https://mi-app.com/peliculas/1`. En cambio, si quisiéramos eliminar dicha película podríamos hacer una petición usando el método `DELETE`. El resultado de nuestra operación estaría dado por la respuesta HTTP. Por ejemplo, si obtenemos el código de respuesta `200`, en el cuerpo de la petición tendremos el recurso solicitado. Obsérvese además, que nuestra respuesta contiene un link a la información del director, con lo cual nuestra aplicación podría obtener la información del mismo, simplemente haciendo una petición `GET` a dicha URL.
+En consecuencia, si quisiéramos recuperar dicha película desde otra aplicación, la misma deberá implementar un cliente HTTP, que realice una petición `GET` sobre `https://mi-app.com/peliculas/1`. En cambio, si quisiéramos eliminar dicha película podríamos hacer una petición usando el método `DELETE`. El resultado de nuestra operación estaría dado por la respuesta HTTP. Por ejemplo, si obtenemos el código de respuesta `200`, en el cuerpo de la petición tendremos el recurso solicitado. Obsérvese además, que nuestra respuesta contiene un enlace a la información del director, con lo cual nuestra aplicación podría obtener la información del mismo, simplemente haciendo una petición `GET` a dicha URL.
 
 ## Lineamientos para modelar una API REST
 
@@ -55,7 +55,7 @@ Si quisiéramos implementar una API REST lo primero que deberíamos hacer es ide
 
 Normalmente, nuestra aplicación tiene colecciones de recursos las cuales desde el punto de vista RESTful son un recurso. Siguiendo con el ejemplo de la aplicación de películas, una colección se corresponde a los directores. Así la misma podría esta identificada mediante la URL `https://mi-app.com/directores` mientras que un director en particular por `https://mi-app.com/directores/1`. De lo anterior, se deduce los siguiente:
 
-* normalmente usamos sustantivos plurales para identificar la collección;
+* normalmente usamos sustantivos plurales para identificar la colección;
 * aprovechamos la jerarquía que nos permiten expresar las URLs para identificar un recurso particular perteneciente a la colección.
 
 Respecto al último punto, y siguiendo con el ejemplo de las películas, si quisiéramos modelar todos los actores pertenecientes a una película en particular, podríamos identificar dicho recurso con la siguiente URL:
@@ -68,7 +68,7 @@ Es importante destacar que no conviene abusar tampoco de esta cuestión, dado qu
 
 ### 2 - Definición de operaciones
 
-Queda claro que al implementar REST sobre HTTP nuestras operaciones estarán dadas por los métodos HTTP. En general, podemos usar la siguiente tabla para definir qué método se adecua mejor a una operación determinada de nuestra aplicación:
+Queda claro que al implementar REST sobre HTTP nuestras operaciones estarán dadas por los métodos de este protocolo. En general, podemos usar la siguiente tabla para definir qué método se adecua mejor a una operación determinada de nuestra aplicación:
 
 | Método   | Uso                                                                                          | Idempotente |
 |:--------:|----------------------------------------------------------------------------------------------|:-----------:|
@@ -96,7 +96,7 @@ Respecto a los códigos de estado a utilizar en las respuesta, cabe destacar lo 
   * si el recurso fue encontrado, se devuelve el código `200`;
   * si el recurso no fue encontrado, se devuelve `404`
 * con respecto a `POST`:
-  * si el recurso fue creado se devuelve código `201` y se utiliza el header `Location` con la URL al recurso generdo
+  * si el recurso fue creado se devuelve código `201` y se utiliza el header `Location` con la URL al recurso generado
   * si el cliente cometió un error (por ejemplo, no especificó el título para una película, siendo este requerido), se retorna el código `400`
 * con respecto a `PUT`:
   * si el recurso fue creado, se devuelve el código `201`
@@ -107,9 +107,9 @@ Respecto a los códigos de estado a utilizar en las respuesta, cabe destacar lo 
   * `400` si el patch está mal formado
 * con respecto a `DELETE`:
   * `204` si el recurso fue exitosamente eliminado
-  * `404`  si el recurso a eliminar no fue ncontrado
+  * `404`  si el recurso a eliminar no fue encontrado
 
-Hasta el momento no se ha mencionado, pero en la URL podemos especificar paráemteros y modificar el comportamiento de nuestra API en función de ellos. Por ejemplo, para el caso de las colecciones de recursos, podemos usarlos para implementar paginación de forma tal de evitar recuperar gran cantidad de datos. Siguiendo con el ejemplo de las películas:
+Hasta el momento no se ha mencionado, pero en la URL podemos especificar parámetros y modificar el comportamiento de nuestra API en función de ellos. Por ejemplo, para el caso de las colecciones de recursos, podemos usarlos para implementar paginación de forma tal de evitar recuperar gran cantidad de datos. Siguiendo con el ejemplo de las películas:
 
 ```
 https://mi-app.com/peliculas?limit=10&offset=2
