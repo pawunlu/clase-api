@@ -4,6 +4,8 @@ Ahora si! Vamos a crear nuestro primer recurso accesible mediante REST. Para ell
 
 ```php
 <?php
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use Psr\Container\ContainerInterface;
@@ -38,6 +40,7 @@ Ademas creamos `app/models/Movie.php`:
 
 ```php
 <?php
+declare(strict_types=1);
 
 namespace App\Model;
 
@@ -48,7 +51,6 @@ class Movie
         $this->db = $db;
     }
 }
-
 ```
 
 Y agregamos el controlador al inyector de dependencias en `src/dependencies.php`:
@@ -74,10 +76,10 @@ Y agregamos la carga de las clases al *autoload* en `composer.json`. Autoload es
 
 Luego ejecutamos `composer dump-autoload `. Si quieres saber mas sobre **autoload**, dejamos algunas referencias[^1][^2].
 
-Ademas hay que crear la ruta (*path*) para acceder al recurso. Esto se hace en en `src/routes.php`:
+Ademas hay que crear la ruta (*path*) para acceder al recurso. Esto se hace en en `app/routes.php`:
 
 ```php
-$app->get('/movies/test', 'MovieController:test');
+$app->get('/movies/test', 'MoviesController:test');
 ```
 
 A continuación corremos el server:
